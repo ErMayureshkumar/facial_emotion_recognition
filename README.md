@@ -45,30 +45,35 @@ By leveraging a custom deep CNN inspired by ResNet, Swish activation, and powerf
 Input Layer: (48, 48, 1)
 
 ────────────────── Residual Block 1 ─────────────────────────
+
 Conv2D (32, 3x3) → BN → Swish                         
 Conv2D (32, 3x3) → BN → Swish                         
 Conv2D (1x1, stride=2) on shortcut → SpatialDropout2D 
 Output: (48, 48, 32)                                  
 
 ───────────────── Residual Block 2 ──────────────────────────
+
 Conv2D (64, 3x3, stride=2) → BN → Swish               
 Conv2D (64, 3x3) → BN → Swish                         
 Conv2D (1x1, stride=2) on shortcut → SpatialDropout2D 
 Output: (24, 24, 64)                                  
 
 ───────────────── Residual Block 3 ──────────────────────────
+
 Conv2D (128, 3x3, stride=2) → BN → Swish              
 Conv2D (128, 3x3) → BN → Swish                        
 Conv2D (1x1, stride=2) on shortcut → SpatialDropout2D 
 Output: (12, 12, 128)                                 
 
 ───────────────── Residual Block 4 ──────────────────────────
+
 Conv2D (256, 3x3, stride=2) → BN → Swish              
 Conv2D (256, 3x3) → BN → Swish                        
 Conv2D (1x1, stride=2) on shortcut → SpatialDropout2D 
 Output: (6, 6, 256)                                   
 
 ───────────────── Residual Block 5 ──────────────────────────
+
 Conv2D (512, 3x3, stride=2) → BN → Swish              
 Conv2D (512, 3x3) → BN → Swish                        
 Conv2D (1x1, stride=2) on shortcut → SpatialDropout2D 
@@ -79,9 +84,13 @@ GlobalAveragePooling2D → Output: (512)
 BN (512)
 
 Fully Connected Dense Layers:
+
 → Dense(256) → BN → Swish → Dropout(0.5)
+
 → Dense(128) → BN → Swish → Dropout(0.5)
+
 → Dense(64)  → BN → Swish → Dropout(0.5)
+
 → Dense(32)  → BN → Swish → Dropout(0.5)
 
 Temperature Scaling Layer: 0.7
